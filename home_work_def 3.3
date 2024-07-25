@@ -1,0 +1,15 @@
+def print_params(a=1, b='строка', c=True):
+    print(a, b, c)
+
+
+print_params(b=25, c=[1, 2, 3])
+print(print_params())
+
+values_list = "Задания", False, [2, 7, 5, 6, 8]
+print_params(*values_list)
+
+values_dict = {"a": 5, "b": 12, "c": 64}
+print_params(**values_dict)
+
+values_list_2 = True, [2, 4, 268, 12, 567]
+print("Homework is finish!", *values_list_2)
