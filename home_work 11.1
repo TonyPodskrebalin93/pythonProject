@@ -1,0 +1,45 @@
+from importlib.resources import contents
+import matplotlib.pyplot as plt
+import numpy as np
+
+import pandas as pd
+import requests
+
+s = pd.Series([5, 6, 7, np.nan, 8, 9])
+print(s)
+df = pd.DataFrame(np.random.randn(10, 4))
+print(df)
+arrays = [
+    ["bar", "bar", "baz", "baz", "foo", "foo", "qux", "qux"],
+    ["one", "two", "one", "two", "one", "two", "one", "two"],
+]
+index = pd.MultiIndex.from_arrays(arrays, names=["first", "second"])
+print(index)
+
+url = 'https://api.binance.com/api/v3/ticker/price'
+response = requests.get(url, params={'symbol': 'BTCUSDT'})
+res = requests.post('https://api.binance.com/post', data={'key': 'value'})
+res1 = requests.delete('https://api.binance.com/delete')
+
+price = response.json()
+print(price)
+
+fig, ax = plt.subplots()
+ax.plot([5, 6, 7, 8], [1, 4, 2, 3])
+fig, ax = plt.subplots(figsize=(5, 2.7))
+
+t = np.arange(0.0, 5.0, 0.01)
+s = np.cos(2 * np.pi * t)
+line, = ax.plot(t, s, lw=2)
+
+ax.annotate('local max', xy=(2, 1), xytext=(3, 1.5),
+            arrowprops=dict(facecolor='black', shrink=0.05))
+
+ax.set_ylim(-2, 2)
+
+fig, ax = plt.subplot_mosaic([['left', 'right_top'],
+                              ['left', 'right_bottom']])
+
+plt.show()
+
+
