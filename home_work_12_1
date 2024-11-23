@@ -1,0 +1,31 @@
+import unittest
+from unittest import TestCase
+
+import homework as ts
+
+
+class RunnerTest(unittest.TestCase):
+    is_frozen = False
+    def test_walk(self):
+        walker = ts.Runner("Anton")
+        for _ in range(10):
+            walker.walk()
+        self.assertEqual(walker.distance, 50)
+
+    def test_run(self):
+        run = ts.Runner("Vasily")
+        for _ in range(10):
+            run.run()
+        self.assertEqual(run.distance, 100)
+
+    def test_challenge(self):
+        walker2 = ts.Runner('Маша')
+        run2 = ts.Runner('Саша')
+        for i in range(10):
+            walker2.walk()
+            run2.run()
+        self.assertNotEqual(run2.distance, walker2.distance)
+
+
+if __name__ == "__main__":
+    unittest.main()
