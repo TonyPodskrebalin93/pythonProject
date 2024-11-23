@@ -1,0 +1,41 @@
+import homework2 as runner
+from unittest import TestCase
+import unittest
+
+
+class TournamentTest(TestCase):
+    is_frozen = True
+    @classmethod
+    def setUpClass(self):
+        self.all_results ={}
+
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def setUp(self):
+        self.first = runner.Runner('Усеин',10)
+        self.second= runner.Runner('Андрей', 9)
+        self.third = runner.Runner('Ник',4)
+        self.dist = 90
+
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def test_Tournament_all(self):
+        run = runner.Tournament(90, self.first, self.second, self.third)
+        self.all_results = run.start()
+        self.assertEqual(self.all_results[len(self.all_results)], 'Ник')
+        TournamentTest.all_results.update(self.all_results)
+
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def test_Tournament_Usain_and_Nik(self):
+        run = runner.Tournament(90, self.first, self.third)
+        self.all_results = run.start()
+        self.assertEqual(self.all_results[len(self.all_results)], 'Ник')
+        TournamentTest.all_results.update(self.all_results)
+
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
+    def test_Tournament_Andrey_and_Nik(self):
+        run = runner.Tournament(90, self.second, self.third)
+        self.all_results = run.start()
+        self.assertEqual(self.all_results[len(self.all_results)], 'Ник')
+        TournamentTest.all_results.update(self.all_results)
+
+    def tearDown(self):
+        print(self.all_results)
