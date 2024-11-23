@@ -1,0 +1,17 @@
+import unittest
+
+import home_work_12_1 as test1
+import home_work_12_2 as test2
+
+
+
+
+my_test_suite = unittest.TestSuite()
+
+
+my_test_suite.addTest(unittest.TestLoader().loadTestsFromTestCase(test1.RunnerTest))
+my_test_suite.addTest(unittest.TestLoader().loadTestsFromTestCase(test2.TournamentTest))
+
+
+runner = unittest.TextTestRunner(verbosity=2)
+runner.run(my_test_suite)
